@@ -146,6 +146,7 @@
             font-size: 1.1em;
             cursor: pointer;
             transition: background 0.3s ease;
+            margin: 10px 0;
         }
 
         button:hover {
@@ -165,12 +166,30 @@
             margin-top: 10px;
         }
 
-        #dadosSection {
+        #loginSection {
             display: block;
         }
 
-        #perguntasSection {
+        #passwordSection, #dadosSection, #perguntasSection, #professorSection {
             display: none;
+        }
+
+        #exportBtn, #clearBtn {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        #clearBtn {
+            background: #E1AD2C;
+        }
+
+        #clearBtn:hover {
+            background: #CD6E27;
+        }
+
+        .role-buttons {
+            display: flex;
+            justify-content: space-between;
         }
 
         @media (max-width: 600px) {
@@ -200,6 +219,29 @@
         <img src="LOGO_1-8.png" alt="Logo da Instituição" class="logo">
         <div id="timer" class="timer">60:00</div>
 
+        <!-- Tela Inicial -->
+        <section id="loginSection">
+            <div class="title-section">Prova de Avaliação de Conhecimentos</div>
+            <h1>Bem-vindo(a)</h1>
+            <div class="role-buttons">
+                <button id="studentBtn">Entrar como Aluno</button>
+                <button id="professorBtn">Entrar como Professor</button>
+            </div>
+        </section>
+
+        <!-- Seção de Senha do Professor -->
+        <section id="passwordSection">
+            <div class="title-section">Prova de Avaliação de Conhecimentos</div>
+            <h1>Login do Professor</h1>
+            <form id="passwordForm">
+                <div class="form-group">
+                    <label for="profPassword">Senha:</label>
+                    <input type="password" id="profPassword" required placeholder="Digite a senha">
+                </div>
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
         <!-- Seção de Dados do Aluno -->
         <section id="dadosSection">
             <div class="title-section">Prova de Avaliação de Conhecimentos</div>
@@ -209,12 +251,10 @@
                     <label for="nome">Nome Completo:</label>
                     <input type="text" id="nome" required>
                 </div>
-
                 <div class="form-group">
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" required placeholder="exemplo@dominio.com">
                 </div>
-
                 <div class="form-group">
                     <label for="turma">Turma:</label>
                     <select id="turma" required>
@@ -223,7 +263,6 @@
                         <option value="Web Design">Web Design</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="periodo">Período:</label>
                     <select id="periodo" required>
@@ -233,7 +272,6 @@
                         <option value="Noite">Noite</option>
                     </select>
                 </div>
-
                 <button type="submit">Continuar</button>
             </form>
         </section>
@@ -244,7 +282,7 @@
             <h1>Prova Online</h1>
             <div id="progress"></div>
 
-            <!-- Perguntas para Operador de Microcomputador (Hardware Básico) -->
+            <!-- Perguntas para Operador de Microcomputador -->
             <div id="opMicroQ1" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 1 - Operador de Microcomputador</h3>
@@ -386,7 +424,7 @@
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
 
-            <!-- Perguntas para Web Design (HTML e CSS Básico) -->
+            <!-- Perguntas para Web Design -->
             <div id="webDesignQ1" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 1 - Web Design</h3>
@@ -532,12 +570,38 @@
                 <button id="prevBtn" style="display: none;">Voltar</button>
             </div>
         </section>
+
+        <!-- Seção do Professor -->
+        <section id="professorSection">
+            <div class="title-section">Prova de Avaliação de Conhecimentos</div>
+            <h1>Painel do Professor</h1>
+            <div class="form-group">
+                <label for="exportTurma">Selecionar Turma:</label>
+                <select id="exportTurma">
+                    <option value="">Todas as Turmas</option>
+                    <option value="Operador de Microcomputador">Operador de Microcomputador</option>
+                    <option value="Web Design">Web Design</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="exportPeriodo">Selecionar Período:</label>
+                <select id="exportPeriodo">
+                    <option value="">Todos os Períodos</option>
+                    <option value="Manhã">Manhã</option>
+                    <option value="Tarde">Tarde</option>
+                    <option value="Noite">Noite</option>
+                </select>
+            </div>
+            <button id="exportBtn">Exportar Respostas (Excel)</button>
+            <button id="clearBtn">Limpar Respostas</button>
+        </section>
     </div>
 
-    <!-- Script do EmailJS -->
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
-        // Inicialize o EmailJS com sua Public Key
+        // Inicialize o EmailJS
         (function(){
             emailjs.init("vEDLCBUCj49wwAh96");
         })();
@@ -547,10 +611,36 @@
         let currentQuestion = 0;
         let respostas = {};
         let timerInterval;
+        let allStudentAnswers = localStorage.getItem('allStudentAnswers') ? JSON.parse(localStorage.getItem('allStudentAnswers')) : [];
+        let isProfessor = false;
+
+        // Controle da tela inicial
+        document.getElementById('studentBtn').addEventListener('click', function() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('dadosSection').style.display = 'block';
+        });
+
+        document.getElementById('professorBtn').addEventListener('click', function() {
+            document.getElementById('loginSection').style.display = 'none';
+            document.getElementById('passwordSection').style.display = 'block';
+        });
+
+        // Login do Professor
+        document.getElementById('passwordForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('profPassword').value;
+            if (password === 'prof123') {
+                isProfessor = true;
+                document.getElementById('passwordSection').style.display = 'none';
+                document.getElementById('professorSection').style.display = 'block';
+            } else {
+                alert('Senha incorreta. Tente novamente.');
+            }
+        });
 
         // Função para iniciar o timer
         function startTimer() {
-            let timeLeft = 60 * 60; // 60 minutos em segundos
+            let timeLeft = 60 * 60;
             const timerDisplay = document.getElementById('timer');
             timerDisplay.style.display = 'block';
 
@@ -559,13 +649,13 @@
                 const seconds = timeLeft % 60;
                 timerDisplay.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 
-                if (timeLeft === 300) { // 5 minutos restantes
+                if (timeLeft === 300) {
                     timerDisplay.style.background = '#A74A86';
                     alert('Atenção: Restam 5 minutos para o término da prova!');
                 }
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    sendProva(false); // Envio automático sem confirmação
+                    sendProva(false);
                 }
                 timeLeft--;
             }, 1000);
@@ -576,6 +666,17 @@
             if (manual && !confirm('Deseja enviar a prova agora? Suas respostas serão enviadas como estão.')) {
                 return;
             }
+
+            const studentData = {
+                nome: nome,
+                email: emailAluno,
+                turma: turma,
+                periodo: periodo,
+                respostas: { ...respostas }
+            };
+
+            allStudentAnswers.push(studentData);
+            localStorage.setItem('allStudentAnswers', JSON.stringify(allStudentAnswers));
 
             emailjs.send("service_2ag71hm", "template_tn8690e", {
                 nome: nome,
@@ -630,7 +731,7 @@
             window.onbeforeunload = null;
         }
 
-        // Controle da seção de dados
+        // Controle da seção de dados do aluno
         document.getElementById('dadosForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -664,7 +765,6 @@
         // Navegação entre perguntas
         const prevBtn = document.getElementById('prevBtn');
 
-        // Adicionar evento aos botões "Enviar Resposta"
         document.querySelectorAll('.submitAnswer').forEach((button, index) => {
             button.addEventListener('click', function() {
                 const currentTextarea = questions[index].querySelector('textarea');
@@ -684,7 +784,7 @@
                     document.getElementById('progress').textContent = `Questão ${currentQuestion + 1} de ${questions.length}`;
                     prevBtn.style.display = 'block';
                 } else {
-                    sendProva(true); // Envio manual com confirmação na última questão
+                    sendProva(true);
                 }
             });
         });
@@ -698,6 +798,74 @@
                 if (currentQuestion === 0) {
                     prevBtn.style.display = 'none';
                 }
+            }
+        });
+
+        // Exportar respostas para Excel com filtro por turma e período
+        document.getElementById('exportBtn').addEventListener('click', function() {
+            if (allStudentAnswers.length === 0) {
+                alert('Nenhuma resposta disponível para exportar.');
+                return;
+            }
+
+            const selectedTurma = document.getElementById('exportTurma').value;
+            const selectedPeriodo = document.getElementById('exportPeriodo').value;
+            let filteredAnswers = allStudentAnswers;
+
+            if (selectedTurma) {
+                filteredAnswers = filteredAnswers.filter(student => student.turma === selectedTurma);
+            }
+            if (selectedPeriodo) {
+                filteredAnswers = filteredAnswers.filter(student => student.periodo === selectedPeriodo);
+            }
+
+            if (filteredAnswers.length === 0) {
+                alert('Nenhuma resposta encontrada para os filtros selecionados.');
+                return;
+            }
+
+            const data = filteredAnswers.map(student => {
+                return {
+                    Nome: student.nome,
+                    Email: student.email,
+                    Turma: student.turma,
+                    Período: student.periodo,
+                    'Questão 1': student.respostas.q1 || '',
+                    'Questão 2': student.respostas.q2 || '',
+                    'Questão 3': student.respostas.q3 || '',
+                    'Questão 4': student.respostas.q4 || '',
+                    'Questão 5': student.respostas.q5 || '',
+                    'Questão 6': student.respostas.q6 || '',
+                    'Questão 7': student.respostas.q7 || '',
+                    'Questão 8': student.respostas.q8 || '',
+                    'Questão 9': student.respostas.q9 || '',
+                    'Questão 10': student.respostas.q10 || '',
+                    'Questão 11': student.respostas.q11 || '',
+                    'Questão 12': student.respostas.q12 || '',
+                    'Questão 13': student.respostas.q13 || '',
+                    'Questão 14': student.respostas.q14 || '',
+                    'Questão 15': student.respostas.q15 || '',
+                    'Questão 16': student.respostas.q16 || '',
+                    'Questão 17': student.respostas.q17 || '',
+                    'Questão 18': student.respostas.q18 || '',
+                    'Questão 19': student.respostas.q19 || '',
+                    'Questão 20': student.respostas.q20 || ''
+                };
+            });
+
+            const ws = XLSX.utils.json_to_sheet(data);
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, "Respostas");
+            const fileName = `respostas_${selectedTurma || 'todas_turmas'}_${selectedPeriodo || 'todos_periodos'}.xlsx`;
+            XLSX.writeFile(wb, fileName);
+        });
+
+        // Limpar o localStorage
+        document.getElementById('clearBtn').addEventListener('click', function() {
+            if (confirm('Tem certeza que deseja limpar todas as respostas salvas? Esta ação não pode ser desfeita.')) {
+                localStorage.clear();
+                allStudentAnswers = [];
+                alert('Respostas limpas com sucesso.');
             }
         });
     </script>

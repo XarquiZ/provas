@@ -4,215 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prova Online</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ffffff 0%, #E1AD2C 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            max-width: 700px;
-            width: 100%;
-            position: relative;
-        }
-
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 100px;
-            height: 100px;
-        }
-
-        .timer {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #CD6E27;
-            color: white;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
-            display: none;
-            transition: background 0.3s ease;
-        }
-
-        .title-section {
-            background: #A74A86;
-            color: white;
-            padding: 15px;
-            border-radius: 10px 10px 0 0;
-            text-align: center;
-            margin-top: 80px;
-            font-size: 1.5em;
-            font-weight: bold;
-        }
-
-        h1 {
-            color: #A74A86;
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 2em;
-        }
-
-        #progress {
-            text-align: center;
-            color: #CD6E27;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            color: #CD6E27;
-            font-weight: 500;
-            margin-bottom: 8px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #E1AD2C;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s ease;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            border-color: #A74A86;
-            outline: none;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .question {
-            background: #fff8f0;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-            display: none;
-        }
-
-        .question.active {
-            display: block;
-        }
-
-        .question .title-section {
-            margin-top: 0;
-            border-radius: 10px 10px 0 0;
-        }
-
-        .question h3 {
-            color: #A74A86;
-            margin-bottom: 10px;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        button {
-            background: #CD6E27;
-            color: white;
-            padding: 14px 25px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            margin: 10px 0;
-        }
-
-        button:hover {
-            background: #A74A86;
-        }
-
-        #prevBtn {
-            background: #E1AD2C;
-        }
-
-        #prevBtn:hover {
-            background: #CD6E27;
-        }
-
-        .question button {
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        #loginSection {
-            display: block;
-        }
-
-        #passwordSection, #dadosSection, #perguntasSection, #professorSection {
-            display: none;
-        }
-
-        #exportBtn, #clearBtn {
-            margin-top: 20px;
-            width: 100%;
-        }
-
-        #clearBtn {
-            background: #E1AD2C;
-        }
-
-        #clearBtn:hover {
-            background: #CD6E27;
-        }
-
-        .role-buttons {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-            }
-            h1 {
-                font-size: 1.5em;
-            }
-            .title-section {
-                font-size: 1.2em;
-                margin-top: 60px;
-            }
-            .logo, .timer {
-                width: 80px;
-                font-size: 1em;
-                padding: 8px;
-            }
-            #progress {
-                font-size: 0.9em;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
@@ -260,7 +52,6 @@
                     <select id="turma" required>
                         <option value="">Selecione sua turma</option>
                         <option value="Operador de Microcomputador">Operador de Microcomputador</option>
-                        <option value="Web Design">Web Design</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -286,288 +77,247 @@
             <div id="opMicroQ1" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 1 - Operador de Microcomputador</h3>
-                <p>O que é um processador e qual sua função principal?</p>
-                <textarea id="opMicro_q1" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que é um processador?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ1" value="a"> a) Dispositivo de armazenamento</label>
+                    <label><input type="radio" name="opMicroQ1" value="b"> b) Unidade de processamento central</label>
+                    <label><input type="radio" name="opMicroQ1" value="c"> c) Placa de vídeo</label>
+                    <label><input type="radio" name="opMicroQ1" value="d"> d) Fonte de energia</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ2" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 2 - Operador de Microcomputador</h3>
-                <p>Explique a diferença entre memória RAM e memória ROM.</p>
-                <textarea id="opMicro_q2" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função principal da memória RAM?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ2" value="a"> a) Armazenar dados permanentemente</label>
+                    <label><input type="radio" name="opMicroQ2" value="b"> b) Armazenar dados temporariamente</label>
+                    <label><input type="radio" name="opMicroQ2" value="c"> c) Processar gráficos</label>
+                    <label><input type="radio" name="opMicroQ2" value="d"> d) Gerenciar energia</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ3" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 3 - Operador de Microcomputador</h3>
-                <p>O que é uma placa-mãe e quais são seus principais componentes?</p>
-                <textarea id="opMicro_q3" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que conecta os componentes na placa-mãe?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ3" value="a"> a) Cooler</label>
+                    <label><input type="radio" name="opMicroQ3" value="b"> b) Barramentos</label>
+                    <label><input type="radio" name="opMicroQ3" value="c"> c) Cabo HDMI</label>
+                    <label><input type="radio" name="opMicroQ3" value="d"> d) Fonte</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ4" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 4 - Operador de Microcomputador</h3>
-                <p>Descreva o que é um HD (disco rígido) e sua função em um computador.</p>
-                <textarea id="opMicro_q4" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função do HD?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ4" value="a"> a) Armazenamento permanente de dados</label>
+                    <label><input type="radio" name="opMicroQ4" value="b"> b) Processamento de dados</label>
+                    <label><input type="radio" name="opMicroQ4" value="c"> c) Refrigeração</label>
+                    <label><input type="radio" name="opMicroQ4" value="d"> d) Conexão à internet</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ5" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 5 - Operador de Microcomputador</h3>
-                <p>O que é uma fonte de alimentação e por que ela é essencial?</p>
-                <textarea id="opMicro_q5" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que a fonte de alimentação faz?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ5" value="a"> a) Converte energia elétrica para os componentes</label>
+                    <label><input type="radio" name="opMicroQ5" value="b"> b) Armazena dados</label>
+                    <label><input type="radio" name="opMicroQ5" value="c"> c) Processa gráficos</label>
+                    <label><input type="radio" name="opMicroQ5" value="d"> d) Conecta à rede</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ6" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 6 - Operador de Microcomputador</h3>
-                <p>Explique o que é uma GPU e como ela difere de uma CPU.</p>
-                <textarea id="opMicro_q6" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a principal função da GPU?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ6" value="a"> a) Processar cálculos gerais</label>
+                    <label><input type="radio" name="opMicroQ6" value="b"> b) Processar gráficos</label>
+                    <label><input type="radio" name="opMicroQ6" value="c"> c) Armazenar dados</label>
+                    <label><input type="radio" name="opMicroQ6" value="d"> d) Gerenciar energia</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ7" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 7 - Operador de Microcomputador</h3>
-                <p>O que são portas USB e quais são seus usos comuns?</p>
-                <textarea id="opMicro_q7" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Para que servem as portas USB?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ7" value="a"> a) Conectar periféricos</label>
+                    <label><input type="radio" name="opMicroQ7" value="b"> b) Refrigeração</label>
+                    <label><input type="radio" name="opMicroQ7" value="c"> c) Processamento</label>
+                    <label><input type="radio" name="opMicroQ7" value="d"> d) Armazenamento</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ8" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 8 - Operador de Microcomputador</h3>
-                <p>Descreva a função de um cooler em um computador.</p>
-                <textarea id="opMicro_q8" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que o cooler faz no computador?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ8" value="a"> a) Armazena dados</label>
+                    <label><input type="radio" name="opMicroQ8" value="b"> b) Resfria os componentes</label>
+                    <label><input type="radio" name="opMicroQ8" value="c"> c) Conecta à internet</label>
+                    <label><input type="radio" name="opMicroQ8" value="d"> d) Processa gráficos</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ9" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 9 - Operador de Microcomputador</h3>
-                <p>O que é um SSD e como ele se compara a um HD tradicional?</p>
-                <textarea id="opMicro_q9" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a principal vantagem do SSD sobre o HD?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ9" value="a"> a) Maior capacidade</label>
+                    <label><input type="radio" name="opMicroQ9" value="b"> b) Maior velocidade</label>
+                    <label><input type="radio" name="opMicroQ9" value="c"> c) Menor custo</label>
+                    <label><input type="radio" name="opMicroQ9" value="d"> d) Menor tamanho</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ10" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 10 - Operador de Microcomputador</h3>
-                <p>Explique o que é BIOS e qual seu papel ao ligar o computador.</p>
-                <textarea id="opMicro_q10" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que o BIOS faz ao ligar o computador?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ10" value="a"> a) Inicia o sistema operacional</label>
+                    <label><input type="radio" name="opMicroQ10" value="b"> b) Armazena dados</label>
+                    <label><input type="radio" name="opMicroQ10" value="c"> c) Processa gráficos</label>
+                    <label><input type="radio" name="opMicroQ10" value="d"> d) Conecta periféricos</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ11" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 11 - Operador de Microcomputador</h3>
-                <p>O que é uma placa de rede e para que ela serve?</p>
-                <textarea id="opMicro_q11" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função da placa de rede?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ11" value="a"> a) Conectar o computador a uma rede</label>
+                    <label><input type="radio" name="opMicroQ11" value="b"> b) Armazenar dados</label>
+                    <label><input type="radio" name="opMicroQ11" value="c"> c) Refrigeração</label>
+                    <label><input type="radio" name="opMicroQ11" value="d"> d) Processamento</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ12" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 12 - Operador de Microcomputador</h3>
-                <p>Descreva a diferença entre hardware e software.</p>
-                <textarea id="opMicro_q12" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que diferencia hardware de software?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ12" value="a"> a) Hardware é físico, software é lógico</label>
+                    <label><input type="radio" name="opMicroQ12" value="b"> b) Hardware é lógico, software é físico</label>
+                    <label><input type="radio" name="opMicroQ12" value="c"> c) Ambos são físicos</label>
+                    <label><input type="radio" name="opMicroQ12" value="d"> d) Ambos são lógicos</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ13" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 13 - Operador de Microcomputador</h3>
-                <p>O que é um barramento em uma placa-mãe?</p>
-                <textarea id="opMicro_q13" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que é um barramento?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ13" value="a"> a) Conexão entre componentes</label>
+                    <label><input type="radio" name="opMicroQ13" value="b"> b) Dispositivo de armazenamento</label>
+                    <label><input type="radio" name="opMicroQ13" value="c"> c) Processador</label>
+                    <label><input type="radio" name="opMicroQ13" value="d"> d) Cooler</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ14" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 14 - Operador de Microcomputador</h3>
-                <p>Explique o que é cache de memória e sua importância.</p>
-                <textarea id="opMicro_q14" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função da memória cache?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ14" value="a"> a) Armazenar dados permanentemente</label>
+                    <label><input type="radio" name="opMicroQ14" value="b"> b) Acelerar o acesso a dados</label>
+                    <label><input type="radio" name="opMicroQ14" value="c"> c) Conectar periféricos</label>
+                    <label><input type="radio" name="opMicroQ14" value="d"> d) Processar gráficos</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ15" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 15 - Operador de Microcomputador</h3>
-                <p>O que são conectores SATA e para que são usados?</p>
-                <textarea id="opMicro_q15" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Para que servem os conectores SATA?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ15" value="a"> a) Conectar dispositivos de armazenamento</label>
+                    <label><input type="radio" name="opMicroQ15" value="b"> b) Refrigeração</label>
+                    <label><input type="radio" name="opMicroQ15" value="c"> c) Conexão à internet</label>
+                    <label><input type="radio" name="opMicroQ15" value="d"> d) Processamento</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ16" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 16 - Operador de Microcomputador</h3>
-                <p>Descreva o que é um monitor e cite dois tipos diferentes.</p>
-                <textarea id="opMicro_q16" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função principal de um monitor?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ16" value="a"> a) Exibir informações visuais</label>
+                    <label><input type="radio" name="opMicroQ16" value="b"> b) Armazenar dados</label>
+                    <label><input type="radio" name="opMicroQ16" value="c"> c) Processar dados</label>
+                    <label><input type="radio" name="opMicroQ16" value="d"> d) Gerenciar energia</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ17" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 17 - Operador de Microcomputador</h3>
-                <p>O que é uma placa de som e qual sua função?</p>
-                <textarea id="opMicro_q17" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que a placa de som faz?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ17" value="a"> a) Processa áudio</label>
+                    <label><input type="radio" name="opMicroQ17" value="b"> b) Armazena dados</label>
+                    <label><input type="radio" name="opMicroQ17" value="c"> c) Conecta à rede</label>
+                    <label><input type="radio" name="opMicroQ17" value="d"> d) Refrigera o sistema</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ18" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 18 - Operador de Microcomputador</h3>
-                <p>Explique o que é um periférico e dê três exemplos.</p>
-                <textarea id="opMicro_q18" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>O que é um periférico?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ18" value="a"> a) Dispositivo externo conectado ao computador</label>
+                    <label><input type="radio" name="opMicroQ18" value="b"> b) Componente interno essencial</label>
+                    <label><input type="radio" name="opMicroQ18" value="c"> c) Software de sistema</label>
+                    <label><input type="radio" name="opMicroQ18" value="d"> d) Fonte de energia</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ19" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 19 - Operador de Microcomputador</h3>
-                <p>O que é um gabinete e qual sua importância?</p>
-                <textarea id="opMicro_q19" required placeholder="Digite sua resposta aqui..."></textarea>
+                <p>Qual é a função principal do gabinete?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ19" value="a"> a) Proteger e organizar componentes</label>
+                    <label><input type="radio" name="opMicroQ19" value="b"> b) Processar dados</label>
+                    <label><input type="radio" name="opMicroQ19" value="c"> c) Armazenar dados</label>
+                    <label><input type="radio" name="opMicroQ19" value="d"> d) Conectar à internet</label>
+                </div>
                 <button class="submitAnswer">Enviar Resposta</button>
             </div>
             <div id="opMicroQ20" class="question">
                 <div class="title-section">Prova de Avaliação de Conhecimentos</div>
                 <h3>Questão 20 - Operador de Microcomputador</h3>
-                <p>Descreva como realizar a limpeza básica de um teclado.</p>
-                <textarea id="opMicro_q20" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-
-            <!-- Perguntas para Web Design -->
-            <div id="webDesignQ1" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 1 - Web Design</h3>
-                <p>O que é HTML e qual sua função principal em um site?</p>
-                <textarea id="webDesign_q1" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ2" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 2 - Web Design</h3>
-                <p>Explique o que é uma tag HTML e dê dois exemplos.</p>
-                <textarea id="webDesign_q2" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ3" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 3 - Web Design</h3>
-                <p>O que é um atributo em HTML? Cite um exemplo.</p>
-                <textarea id="webDesign_q3" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ4" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 4 - Web Design</h3>
-                <p>Descreva a função da tag <head> em um documento HTML.</p>
-                <textarea id="webDesign_q4" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ5" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 5 - Web Design</h3>
-                <p>O que é a tag <body> e o que ela contém?</p>
-                <textarea id="webDesign_q5" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ6" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 6 - Web Design</h3>
-                <p>Explique o que é CSS e sua relação com o HTML.</p>
-                <textarea id="webDesign_q6" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ7" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 7 - Web Design</h3>
-                <p>O que é um seletor CSS? Dê um exemplo.</p>
-                <textarea id="webDesign_q7" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ8" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 8 - Web Design</h3>
-                <p>Descreva a diferença entre margin e padding em CSS.</p>
-                <textarea id="webDesign_q8" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ9" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 9 - Web Design</h3>
-                <p>O que é a propriedade color em CSS e como usá-la?</p>
-                <textarea id="webDesign_q9" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ10" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 10 - Web Design</h3>
-                <p>Explique a função da tag <img> em HTML.</p>
-                <textarea id="webDesign_q10" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ11" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 11 - Web Design</h3>
-                <p>O que é a propriedade background-color em CSS?</p>
-                <textarea id="webDesign_q11" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ12" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 12 - Web Design</h3>
-                <p>Descreva como criar um link em HTML usando a tag <a>.</p>
-                <textarea id="webDesign_q12" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ13" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 13 - Web Design</h3>
-                <p>O que é a propriedade font-size em CSS?</p>
-                <textarea id="webDesign_q13" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ14" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 14 - Web Design</h3>
-                <p>Explique a função da tag <div> em HTML.</p>
-                <textarea id="webDesign_q14" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ15" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 15 - Web Design</h3>
-                <p>O que é a propriedade text-align em CSS?</p>
-                <textarea id="webDesign_q15" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ16" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 16 - Web Design</h3>
-                <p>Descreva como adicionar uma lista ordenada em HTML.</p>
-                <textarea id="webDesign_q16" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ17" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 17 - Web Design</h3>
-                <p>O que é a propriedade border em CSS e como aplicá-la?</p>
-                <textarea id="webDesign_q17" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ18" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 18 - Web Design</h3>
-                <p>Explique a diferença entre uma tag de abertura e uma tag de fechamento em HTML.</p>
-                <textarea id="webDesign_q18" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ19" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 19 - Web Design</h3>
-                <p>O que é a propriedade display em CSS e cite dois valores possíveis.</p>
-                <textarea id="webDesign_q19" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
-            </div>
-            <div id="webDesignQ20" class="question">
-                <div class="title-section">Prova de Avaliação de Conhecimentos</div>
-                <h3>Questão 20 - Web Design</h3>
-                <p>Descreva como centralizar um texto horizontalmente usando CSS.</p>
-                <textarea id="webDesign_q20" required placeholder="Digite sua resposta aqui..."></textarea>
-                <button class="submitAnswer">Enviar Resposta</button>
+                <p>Qual é o método mais seguro para limpar um teclado?</p>
+                <div class="options">
+                    <label><input type="radio" name="opMicroQ20" value="a"> a) Usar ar comprimido</label>
+                    <label><input type="radio" name="opMicroQ20" value="b"> b) Lavar com água</label>
+                    <label><input type="radio" name="opMicroQ20" value="c"> c) Usar aspirador</label>
+                    <label><input type="radio" name="opMicroQ20" value="d"> d) Mergulhar em álcool</label>
+                </div>
+                <!-- Botão "Enviar Resposta" removido -->
             </div>
 
             <div class="navigation">
                 <button id="prevBtn" style="display: none;">Voltar</button>
+                <button id="finishBtn" style="display: none;">Finalizar Prova</button>
             </div>
         </section>
 
@@ -580,7 +330,6 @@
                 <select id="exportTurma">
                     <option value="">Todas as Turmas</option>
                     <option value="Operador de Microcomputador">Operador de Microcomputador</option>
-                    <option value="Web Design">Web Design</option>
                 </select>
             </div>
             <div class="form-group">
@@ -601,7 +350,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script>
-        // Inicialize o EmailJS
         (function(){
             emailjs.init("vEDLCBUCj49wwAh96");
         })();
@@ -614,7 +362,24 @@
         let allStudentAnswers = localStorage.getItem('allStudentAnswers') ? JSON.parse(localStorage.getItem('allStudentAnswers')) : [];
         let isProfessor = false;
 
-        // Controle da tela inicial
+        // Respostas corretas originais (antes do embaralhamento)
+        const originalCorrectAnswers = {
+            opMicroQ1: 'b', opMicroQ2: 'b', opMicroQ3: 'b', opMicroQ4: 'a', opMicroQ5: 'a',
+            opMicroQ6: 'b', opMicroQ7: 'a', opMicroQ8: 'b', opMicroQ9: 'b', opMicroQ10: 'a',
+            opMicroQ11: 'a', opMicroQ12: 'a', opMicroQ13: 'a', opMicroQ14: 'b', opMicroQ15: 'a',
+            opMicroQ16: 'a', opMicroQ17: 'a', opMicroQ18: 'a', opMicroQ19: 'a', opMicroQ20: 'a'
+        };
+        let correctAnswers = { ...originalCorrectAnswers }; // Cópia que será ajustada após embaralhamento
+
+        // Função para embaralhar um array (Fisher-Yates)
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
         document.getElementById('studentBtn').addEventListener('click', function() {
             document.getElementById('loginSection').style.display = 'none';
             document.getElementById('dadosSection').style.display = 'block';
@@ -625,7 +390,6 @@
             document.getElementById('passwordSection').style.display = 'block';
         });
 
-        // Login do Professor
         document.getElementById('passwordForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const password = document.getElementById('profPassword').value;
@@ -638,7 +402,6 @@
             }
         });
 
-        // Função para iniciar o timer
         function startTimer() {
             let timeLeft = 60 * 60;
             const timerDisplay = document.getElementById('timer');
@@ -661,18 +424,30 @@
             }, 1000);
         }
 
-        // Função para enviar a prova
+        function calculateScore(respostas) {
+            let score = 0;
+            for (let i = 1; i <= 20; i++) {
+                const questionId = `opMicroQ${i}`;
+                if (respostas[questionId] === correctAnswers[questionId]) {
+                    score += 0.5;
+                }
+            }
+            return score;
+        }
+
         function sendProva(manual = true) {
             if (manual && !confirm('Deseja enviar a prova agora? Suas respostas serão enviadas como estão.')) {
                 return;
             }
 
+            const score = calculateScore(respostas);
             const studentData = {
                 nome: nome,
                 email: emailAluno,
                 turma: turma,
                 periodo: periodo,
-                respostas: { ...respostas }
+                respostas: { ...respostas },
+                notaFinal: score
             };
 
             allStudentAnswers.push(studentData);
@@ -682,31 +457,31 @@
                 nome: nome,
                 turma: turma,
                 periodo: periodo,
-                q1: respostas.q1 || '',
-                q2: respostas.q2 || '',
-                q3: respostas.q3 || '',
-                q4: respostas.q4 || '',
-                q5: respostas.q5 || '',
-                q6: respostas.q6 || '',
-                q7: respostas.q7 || '',
-                q8: respostas.q8 || '',
-                q9: respostas.q9 || '',
-                q10: respostas.q10 || '',
-                q11: respostas.q11 || '',
-                q12: respostas.q12 || '',
-                q13: respostas.q13 || '',
-                q14: respostas.q14 || '',
-                q15: respostas.q15 || '',
-                q16: respostas.q16 || '',
-                q17: respostas.q17 || '',
-                q18: respostas.q18 || '',
-                q19: respostas.q19 || '',
-                q20: respostas.q20 || '',
+                q1: respostas['opMicroQ1'] || '',
+                q2: respostas['opMicroQ2'] || '',
+                q3: respostas['opMicroQ3'] || '',
+                q4: respostas['opMicroQ4'] || '',
+                q5: respostas['opMicroQ5'] || '',
+                q6: respostas['opMicroQ6'] || '',
+                q7: respostas['opMicroQ7'] || '',
+                q8: respostas['opMicroQ8'] || '',
+                q9: respostas['opMicroQ9'] || '',
+                q10: respostas['opMicroQ10'] || '',
+                q11: respostas['opMicroQ11'] || '',
+                q12: respostas['opMicroQ12'] || '',
+                q13: respostas['opMicroQ13'] || '',
+                q14: respostas['opMicroQ14'] || '',
+                q15: respostas['opMicroQ15'] || '',
+                q16: respostas['opMicroQ16'] || '',
+                q17: respostas['opMicroQ17'] || '',
+                q18: respostas['opMicroQ18'] || '',
+                q19: respostas['opMicroQ19'] || '',
+                q20: respostas['opMicroQ20'] || '',
                 from_email: emailAluno,
                 to_email: 'wsbatistaprof@gmail.com'
             })
             .then(function(response) {
-                alert('Prova enviada com sucesso! Verifique seu e-mail.');
+                alert(`Prova enviada com sucesso! Sua nota: ${score}/10. Verifique seu e-mail.`);
                 resetProva();
             }, function(error) {
                 alert('Erro ao enviar a prova. Verifique sua conexão ou tente novamente.');
@@ -714,7 +489,6 @@
             });
         }
 
-        // Função para resetar a prova
         function resetProva() {
             clearInterval(timerInterval);
             document.getElementById('timer').style.display = 'none';
@@ -725,13 +499,17 @@
             questions.forEach(q => q.classList.remove('active'));
             document.getElementById('progress').textContent = '';
             currentQuestion = 0;
-            prevBtn.style.display = 'none';
-            questions.forEach(q => q.querySelector('textarea').value = '');
+            document.getElementById('prevBtn').style.display = 'none';
+            document.getElementById('finishBtn').style.display = 'none';
+            questions.forEach(q => {
+                const radios = q.querySelectorAll('input[type="radio"]');
+                radios.forEach(radio => radio.checked = false);
+            });
             respostas = {};
+            correctAnswers = { ...originalCorrectAnswers }; // Reseta as respostas corretas para o original
             window.onbeforeunload = null;
         }
 
-        // Controle da seção de dados do aluno
         document.getElementById('dadosForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -745,12 +523,43 @@
                 return;
             }
 
-            if (turma === 'Operador de Microcomputador') {
-                questions = Array.from(document.querySelectorAll('[id^="opMicroQ"]'));
-            } else if (turma === 'Web Design') {
-                questions = Array.from(document.querySelectorAll('[id^="webDesignQ"]'));
-            }
+            questions = Array.from(document.querySelectorAll('.question'));
 
+            // Embaralhar as questões
+            questions = shuffle(questions);
+            const perguntasSection = document.getElementById('perguntasSection');
+            const navigationDiv = perguntasSection.querySelector('.navigation');
+            perguntasSection.innerHTML = ''; // Limpa o conteúdo atual
+            perguntasSection.appendChild(document.createElement('div')).className = 'title-section';
+            perguntasSection.querySelector('.title-section').textContent = 'Prova de Avaliação de Conhecimentos';
+            perguntasSection.appendChild(document.createElement('h1')).textContent = 'Prova Online';
+            perguntasSection.appendChild(document.createElement('div')).id = 'progress';
+            questions.forEach(q => perguntasSection.appendChild(q)); // Adiciona questões embaralhadas
+            perguntasSection.appendChild(navigationDiv); // Reinsere o navigation
+
+            // Embaralhar as alternativas de cada questão
+            questions.forEach((question, index) => {
+                const optionsDiv = question.querySelector('.options');
+                let options = Array.from(optionsDiv.querySelectorAll('label'));
+                const originalCorrectValue = originalCorrectAnswers[question.id];
+                const originalCorrectIndex = options.findIndex(opt => opt.querySelector('input').value === originalCorrectValue);
+
+                options = shuffle(options);
+                optionsDiv.innerHTML = '';
+                options.forEach((opt, newIndex) => {
+                    const input = opt.querySelector('input');
+                    input.value = String.fromCharCode(97 + newIndex); // Atualiza valores para 'a', 'b', 'c', 'd'
+                    opt.querySelector('input').name = question.id; // Garante que o name seja único
+                    optionsDiv.appendChild(opt);
+                });
+
+                // Atualiza a resposta correta no objeto correctAnswers
+                const newCorrectValue = options[originalCorrectIndex].querySelector('input').value;
+                correctAnswers[question.id] = newCorrectValue;
+                console.log(`Questão ${question.id}: Resposta correta atualizada para ${newCorrectValue}`);
+            });
+
+            console.log('Total de questões carregadas:', questions.length);
             document.getElementById('dadosSection').style.display = 'none';
             document.getElementById('perguntasSection').style.display = 'block';
             questions[currentQuestion].classList.add('active');
@@ -762,29 +571,39 @@
             };
         });
 
-        // Navegação entre perguntas
         const prevBtn = document.getElementById('prevBtn');
+        const finishBtn = document.getElementById('finishBtn');
 
-        document.querySelectorAll('.submitAnswer').forEach((button, index) => {
-            button.addEventListener('click', function() {
-                const currentTextarea = questions[index].querySelector('textarea');
-                const resposta = currentTextarea.value.trim();
-
-                if (!resposta) {
-                    alert('Por favor, responda a questão antes de enviar.');
+        document.querySelectorAll('.submitAnswer').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const currentQuestionDiv = button.closest('.question');
+                if (!currentQuestionDiv) {
+                    console.error('Div da questão não encontrada');
                     return;
                 }
 
-                respostas[`q${index + 1}`] = resposta;
+                const questionId = currentQuestionDiv.id;
+                const selectedOption = currentQuestionDiv.querySelector('input[type="radio"]:checked');
 
-                if (index < questions.length - 1) {
-                    questions[index].classList.remove('active');
-                    currentQuestion = index + 1;
+                if (!selectedOption) {
+                    alert('Por favor, selecione uma opção antes de enviar.');
+                    return;
+                }
+
+                respostas[questionId] = selectedOption.value;
+                console.log(`Resposta registrada - Questão: ${questionId}, Valor: ${respostas[questionId]}, Total de respostas: ${Object.keys(respostas).length}`);
+
+                if (currentQuestion < questions.length - 1) {
+                    questions[currentQuestion].classList.remove('active');
+                    currentQuestion++;
                     questions[currentQuestion].classList.add('active');
                     document.getElementById('progress').textContent = `Questão ${currentQuestion + 1} de ${questions.length}`;
                     prevBtn.style.display = 'block';
+                    finishBtn.style.display = currentQuestion === questions.length - 1 ? 'block' : 'none';
+                    console.log(`Avançou para questão ${currentQuestion + 1}, ID: ${questions[currentQuestion].id}`);
                 } else {
-                    sendProva(true);
+                    console.log('Última questão alcançada');
                 }
             });
         });
@@ -798,11 +617,32 @@
                 if (currentQuestion === 0) {
                     prevBtn.style.display = 'none';
                 }
+                finishBtn.style.display = currentQuestion === questions.length - 1 ? 'block' : 'none';
+                console.log(`Voltou para questão ${currentQuestion + 1}, ID: ${questions[currentQuestion].id}`);
             }
         });
 
-        // Exportar respostas para Excel com filtro por turma e período
+        finishBtn.addEventListener('click', function() {
+            const lastQuestionDiv = questions[questions.length - 1];
+            const lastQuestionId = lastQuestionDiv.id;
+            const selectedOption = lastQuestionDiv.querySelector('input[type="radio"]:checked');
+
+            if (!selectedOption) {
+                alert('Por favor, selecione uma opção na última questão antes de finalizar.');
+                return;
+            }
+
+            respostas[lastQuestionId] = selectedOption.value;
+            console.log(`Resposta final registrada - Questão: ${lastQuestionId}, Valor: ${respostas[lastQuestionId]}`);
+            sendProva(true);
+        });
+
         document.getElementById('exportBtn').addEventListener('click', function() {
+            if (!window.XLSX) {
+                alert('Erro: A biblioteca XLSX não foi carregada. Verifique sua conexão ou tente recarregar a página.');
+                return;
+            }
+
             if (allStudentAnswers.length === 0) {
                 alert('Nenhuma resposta disponível para exportar.');
                 return;
@@ -810,7 +650,7 @@
 
             const selectedTurma = document.getElementById('exportTurma').value;
             const selectedPeriodo = document.getElementById('exportPeriodo').value;
-            let filteredAnswers = allStudentAnswers;
+            let filteredAnswers = [...allStudentAnswers];
 
             if (selectedTurma) {
                 filteredAnswers = filteredAnswers.filter(student => student.turma === selectedTurma);
@@ -824,48 +664,32 @@
                 return;
             }
 
-            const data = filteredAnswers.map(student => {
-                return {
-                    Nome: student.nome,
-                    Email: student.email,
-                    Turma: student.turma,
-                    Período: student.periodo,
-                    'Questão 1': student.respostas.q1 || '',
-                    'Questão 2': student.respostas.q2 || '',
-                    'Questão 3': student.respostas.q3 || '',
-                    'Questão 4': student.respostas.q4 || '',
-                    'Questão 5': student.respostas.q5 || '',
-                    'Questão 6': student.respostas.q6 || '',
-                    'Questão 7': student.respostas.q7 || '',
-                    'Questão 8': student.respostas.q8 || '',
-                    'Questão 9': student.respostas.q9 || '',
-                    'Questão 10': student.respostas.q10 || '',
-                    'Questão 11': student.respostas.q11 || '',
-                    'Questão 12': student.respostas.q12 || '',
-                    'Questão 13': student.respostas.q13 || '',
-                    'Questão 14': student.respostas.q14 || '',
-                    'Questão 15': student.respostas.q15 || '',
-                    'Questão 16': student.respostas.q16 || '',
-                    'Questão 17': student.respostas.q17 || '',
-                    'Questão 18': student.respostas.q18 || '',
-                    'Questão 19': student.respostas.q19 || '',
-                    'Questão 20': student.respostas.q20 || ''
-                };
-            });
+            try {
+                const data = filteredAnswers.map(student => ({
+                    'Nome do Aluno': student.nome,
+                    'Turma': student.turma,
+                    'Período': student.periodo,
+                    'Nota Final': student.notaFinal
+                }));
 
-            const ws = XLSX.utils.json_to_sheet(data);
-            const wb = XLSX.utils.book_new();
-            XLSX.utils.book_append_sheet(wb, ws, "Respostas");
-            const fileName = `respostas_${selectedTurma || 'todas_turmas'}_${selectedPeriodo || 'todos_periodos'}.xlsx`;
-            XLSX.writeFile(wb, fileName);
+                const ws = XLSX.utils.json_to_sheet(data);
+                const wb = XLSX.utils.book_new();
+                XLSX.utils.book_append_sheet(wb, ws, "Respostas");
+
+                const fileName = `respostas_${selectedTurma || 'todas_turmas'}_${selectedPeriodo || 'todos_periodos'}.xlsx`;
+                XLSX.writeFile(wb, fileName);
+                alert('Respostas exportadas com sucesso!');
+            } catch (error) {
+                console.error('Erro ao exportar respostas:', error);
+                alert('Erro ao exportar as respostas. Verifique o console para mais detalhes.');
+            }
         });
 
-        // Limpar o localStorage
         document.getElementById('clearBtn').addEventListener('click', function() {
             if (confirm('Tem certeza que deseja limpar todas as respostas salvas? Esta ação não pode ser desfeita.')) {
                 localStorage.clear();
                 allStudentAnswers = [];
-                alert('Respostas limpas com sucesso.');
+                alert('Respostas limpas com sucesso!');
             }
         });
     </script>
